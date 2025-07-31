@@ -21,11 +21,57 @@ const HeroSection = () => {
 
   return (
     <div className="relative h-screen bg-background flex items-center justify-center overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full border border-accent animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full border border-accent-secondary animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-silver opacity-20 animate-spin" style={{animationDuration: '20s'}}></div>
+      {/* Flowing tube background */}
+      <div className="absolute inset-0">
+        <svg className="w-full h-full" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+          {/* Flowing metallic tubes */}
+          <defs>
+            <linearGradient id="tubeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="rgba(192,192,192,0.8)" />
+              <stop offset="50%" stopColor="rgba(255,255,255,0.9)" />
+              <stop offset="100%" stopColor="rgba(160,160,160,0.7)" />
+            </linearGradient>
+            <linearGradient id="tubeGradient2" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(180,180,180,0.6)" />
+              <stop offset="50%" stopColor="rgba(220,220,220,0.8)" />
+              <stop offset="100%" stopColor="rgba(140,140,140,0.5)" />
+            </linearGradient>
+          </defs>
+          
+          {/* Main flowing tubes */}
+          <path 
+            d="M-200,200 Q400,100 800,300 T1600,250 Q1800,200 2000,400" 
+            stroke="url(#tubeGradient1)" 
+            strokeWidth="40" 
+            fill="none" 
+            opacity="0.7"
+            className="animate-pulse"
+            style={{animationDuration: '4s'}}
+          />
+          <path 
+            d="M-100,600 Q300,500 700,700 T1500,650 Q1700,600 1900,800" 
+            stroke="url(#tubeGradient2)" 
+            strokeWidth="35" 
+            fill="none" 
+            opacity="0.6"
+            className="animate-pulse"
+            style={{animationDuration: '6s', animationDelay: '1s'}}
+          />
+          <path 
+            d="M200,900 Q600,800 1000,1000 T1800,950 Q2000,900 2200,1100" 
+            stroke="url(#tubeGradient1)" 
+            strokeWidth="30" 
+            fill="none" 
+            opacity="0.5"
+            className="animate-pulse"
+            style={{animationDuration: '5s', animationDelay: '2s'}}
+          />
+          
+          {/* Additional curved elements */}
+          <ellipse cx="300" cy="200" rx="60" ry="20" fill="url(#tubeGradient1)" opacity="0.4" className="animate-pulse" style={{animationDuration: '3s'}} />
+          <ellipse cx="1200" cy="800" rx="80" ry="25" fill="url(#tubeGradient2)" opacity="0.3" className="animate-pulse" style={{animationDuration: '4s', animationDelay: '1.5s'}} />
+          <ellipse cx="1600" cy="300" rx="50" ry="15" fill="url(#tubeGradient1)" opacity="0.5" className="animate-pulse" style={{animationDuration: '2.5s', animationDelay: '0.5s'}} />
+        </svg>
       </div>
 
       {/* Main content */}
