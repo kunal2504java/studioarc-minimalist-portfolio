@@ -1,40 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Architecture Portfolio Design System - Clean, minimal, professional */
+/* Tech Portfolio Design System - Dark, futuristic, professional */
 
 @layer base {
   :root {
-    /* Core brand colors - monochromatic with subtle accent */
-    --background: 0 0% 99%;
-    --foreground: 0 0% 8%;
+    /* Core brand colors - dark theme with tech accent */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
     
     /* Surface colors */
-    --surface: 0 0% 100%;
-    --surface-secondary: 0 0% 97%;
-    --surface-tertiary: 0 0% 95%;
+    --surface: 0 0% 12%;
+    --surface-secondary: 0 0% 16%;
+    --surface-tertiary: 0 0% 20%;
     
     /* Text hierarchy */
-    --text-primary: 0 0% 8%;
-    --text-secondary: 0 0% 25%;
-    --text-tertiary: 0 0% 45%;
-    --text-muted: 0 0% 65%;
+    --text-primary: 0 0% 95%;
+    --text-secondary: 0 0% 80%;
+    --text-tertiary: 0 0% 65%;
+    --text-muted: 0 0% 50%;
     
-    /* Accent color - sophisticated blue */
-    --accent: 200 80% 45%;
-    --accent-light: 200 60% 85%;
+    /* Accent colors - tech purple/pink gradient */
+    --accent: 280 100% 60%;
+    --accent-secondary: 320 100% 65%;
+    --accent-light: 280 50% 80%;
     --accent-foreground: 0 0% 100%;
     
+    /* Silver colors for 3D text effects */
+    --silver: 0 0% 75%;
+    --silver-light: 0 0% 85%;
+    --silver-dark: 0 0% 60%;
+    
     /* Interactive states */
-    --hover: 0 0% 90%;
-    --active: 0 0% 85%;
+    --hover: 0 0% 25%;
+    --active: 0 0% 30%;
     
     /* Borders and dividers */
-    --border: 0 0% 90%;
-    --border-light: 0 0% 95%;
+    --border: 0 0% 25%;
+    --border-light: 0 0% 20%;
     
     /* Shadows */
     --shadow-subtle: 0 0% 0% / 0.04;
@@ -126,25 +132,54 @@
 }
 
 @layer components {
-  /* Typography system */
+  /* Typography system with 3D silver effects */
   .text-display {
-    @apply text-4xl md:text-6xl font-light tracking-tight text-text-primary;
+    @apply text-5xl md:text-8xl font-orbitron font-black tracking-wider;
+    background: linear-gradient(135deg, hsl(var(--silver-light)), hsl(var(--silver)), hsl(var(--silver-dark)));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 
+      0 1px 0 hsl(var(--silver-dark)),
+      0 2px 0 hsl(var(--silver-dark)),
+      0 3px 0 hsl(var(--silver-dark)),
+      0 4px 5px rgba(0,0,0,0.5);
+  }
+
+  .text-display-accent {
+    @apply text-5xl md:text-8xl font-orbitron font-black tracking-wider;
+    background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-secondary)));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 
+      0 0 20px hsl(var(--accent)),
+      0 0 40px hsl(var(--accent)),
+      0 4px 5px rgba(0,0,0,0.5);
   }
   
   .text-heading-xl {
-    @apply text-3xl md:text-4xl font-medium tracking-tight text-text-primary;
+    @apply text-3xl md:text-4xl font-orbitron font-bold tracking-wide;
+    color: hsl(var(--silver));
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
   
   .text-heading-lg {
-    @apply text-2xl md:text-3xl font-medium tracking-tight text-text-primary;
+    @apply text-2xl md:text-3xl font-orbitron font-bold tracking-wide;
+    color: hsl(var(--silver));
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
   
   .text-heading-md {
-    @apply text-xl md:text-2xl font-medium text-text-primary;
+    @apply text-xl md:text-2xl font-orbitron font-bold;
+    color: hsl(var(--silver));
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
   }
   
   .text-heading-sm {
-    @apply text-lg font-medium text-text-primary;
+    @apply text-lg font-orbitron font-bold;
+    color: hsl(var(--silver));
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
   }
   
   .text-body-lg {
@@ -182,11 +217,16 @@
   }
   
   .button-primary {
-    @apply bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-3 rounded font-medium transition-all duration-300 hover:shadow-lg;
+    @apply bg-gradient-to-r from-accent to-accent-secondary hover:from-accent-secondary hover:to-accent text-accent-foreground px-8 py-4 rounded-lg font-orbitron font-bold transition-all duration-300 hover:shadow-xl border border-accent/30 hover:border-accent/50;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    box-shadow: 
+      0 4px 15px rgba(0,0,0,0.2),
+      0 0 20px hsl(var(--accent) / 0.3);
   }
   
   .button-secondary {
-    @apply border border-border hover:border-accent text-text-primary hover:text-accent px-8 py-3 rounded font-medium transition-all duration-300;
+    @apply border border-accent/30 hover:border-accent text-silver hover:text-accent px-8 py-4 rounded-lg font-orbitron font-bold transition-all duration-300 hover:bg-accent/10;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
   }
 
   /* Image and media */

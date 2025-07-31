@@ -20,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				inter: ['Inter', 'system-ui', 'sans-serif'],
+				orbitron: ['Orbitron', 'monospace'],
 			},
 			colors: {
 				// Core semantic colors
@@ -36,8 +37,14 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
+					secondary: 'hsl(var(--accent-secondary))',
 					light: 'hsl(var(--accent-light))',
 					foreground: 'hsl(var(--accent-foreground))',
+				},
+				silver: {
+					DEFAULT: 'hsl(var(--silver))',
+					light: 'hsl(var(--silver-light))',
+					dark: 'hsl(var(--silver-dark))',
 				},
 				hover: 'hsl(var(--hover))',
 				active: 'hsl(var(--active))',
@@ -108,11 +115,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'bounce-arrow': {
+					'0%, 20%, 50%, 80%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'40%': {
+						transform: 'translateY(-10px)'
+					},
+					'60%': {
+						transform: 'translateY(-5px)'
+					}
+				},
+				'glow-pulse': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px hsl(var(--accent)), 0 0 40px hsl(var(--accent))'
+					},
+					'50%': {
+						boxShadow: '0 0 40px hsl(var(--accent)), 0 0 80px hsl(var(--accent))'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'bounce-arrow': 'bounce-arrow 2s infinite',
+				'glow-pulse': 'glow-pulse 2s ease-in-out infinite'
 			}
 		}
 	},

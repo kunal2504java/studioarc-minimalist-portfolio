@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuHovered, setIsMenuHovered] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -16,10 +16,6 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
-
   const navLinks = [
     { name: 'Projects', path: '/projects' },
     { name: 'About', path: '/about' },
@@ -28,58 +24,53 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-surface/95 backdrop-blur-md shadow-subtle' : 'bg-transparent'
+      isScrolled ? 'bg-surface/95 backdrop-blur-md border-b border-border' : 'bg-transparent'
     }`}>
       <div className="container-wide">
         <div className="flex items-center justify-between py-6">
           {/* Logo */}
-          <Link to="/" className="text-heading-md font-light tracking-wider">
-            Studio Arc
+          <Link to="/" className="text-heading-md font-orbitron tracking-wider">
+            <span className="text-silver">DEV</span>
+            <span className="text-accent">FOLIO</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-12">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`nav-link ${
-                  location.pathname === link.path ? 'text-accent' : ''
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
+          {/* Hover Menu */}
+          <div className="relative">
+            <div
+              className="group"
+              onMouseEnter={() => setIsMenuHovered(true)}
+              onMouseLeave={() => setIsMenuHovered(false)}
+            >
+              {/* Menu Button */}
+              <button className="flex items-center space-x-2 px-6 py-3 bg-surface border border-accent/20 rounded-lg hover:border-accent/50 transition-all duration-300 hover:bg-accent/10">
+                <Menu size={20} className="text-accent" />
+                <span className="text-silver font-orbitron font-bold">MENU</span>
+              </button>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-text-secondary hover:text-accent transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-surface shadow-medium">
-            <div className="py-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`block px-6 py-3 text-lg nav-link ${
-                    location.pathname === link.path ? 'text-accent' : ''
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {/* Dropdown Menu */}
+              <div className={`absolute top-full right-0 mt-2 min-w-48 transition-all duration-300 ${
+                isMenuHovered 
+                  ? 'opacity-100 translate-y-0 visible' 
+                  : 'opacity-0 -translate-y-2 invisible'
+              }`}>
+                <div className="bg-surface/95 backdrop-blur-md border border-accent/20 rounded-lg overflow-hidden shadow-xl">
+                  {navLinks.map((link, index) => (
+                    <Link
+                      key={link.name}
+                      to={link.path}
+                      className={`block px-6 py-4 text-silver hover:text-accent hover:bg-accent/10 transition-all duration-200 font-orbitron font-bold border-b border-border/20 last:border-b-0 ${
+                        location.pathname === link.path ? 'text-accent bg-accent/5' : ''
+                      }`}
+                      style={{ transitionDelay: `${index * 50}ms` }}
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
