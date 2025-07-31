@@ -195,7 +195,7 @@
   }
   
   .project-thumbnail {
-    @apply relative overflow-hidden rounded group cursor-pointer;
+    @apply relative overflow-hidden rounded cursor-pointer;
   }
   
   .project-thumbnail img {

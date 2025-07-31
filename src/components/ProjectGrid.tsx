@@ -96,7 +96,7 @@ const ProjectGrid = () => {
             <Link 
               key={project.id} 
               to={`/projects/${project.slug}`}
-              className={`project-thumbnail aspect-[4/3] fade-in visible stagger-delay-${(index % 4) + 1}`}
+              className={`project-thumbnail group aspect-[4/3] fade-in visible stagger-delay-${(index % 4) + 1}`}
             >
               <img 
                 src={project.image} 
