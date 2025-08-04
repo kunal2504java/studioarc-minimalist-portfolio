@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import ThreeDBackground from '../components/ThreeDBackground';
+import DottedBackground from '../components/DottedBackground';
 
 const HeroSection = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -45,9 +45,9 @@ const HeroSection = () => {
 
   return (
     <div className="relative h-screen bg-background flex items-center justify-center overflow-hidden">
-      {/* 3D Animated Background */}
+      {/* Dotted Background */}
       <div className="absolute inset-0" style={{ zIndex: 1 }}>
-        <ThreeDBackground />
+        <DottedBackground />
       </div>
       
       {/* Subtle overlay for better text readability */}
