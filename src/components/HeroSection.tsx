@@ -1,105 +1,97 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
+import ThreeDBackground from '../components/ThreeDBackground';
 
 const HeroSection = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [typedText, setTypedText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
   
   const changingTexts = [
-    { word: '[CODE]', color: 'text-display-accent' },
+    { word: '[CODE]', color: 'text-purple-500' },
     { word: '[INNOVATION]', color: 'text-display-accent' },
     { word: '[SOLUTIONS]', color: 'text-display-accent' },
     { word: '[EXPERIENCE]', color: 'text-display-accent' }
   ];
 
+  const fullText = 'MORE THAN CODE';
+  
+  // Typewriter effect for main heading
   useEffect(() => {
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setTypedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        setIsTypingComplete(true);
+        clearInterval(typingInterval);
+      }
+    }, 100); // Adjust speed here (lower = faster)
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
+  // Start the changing text animation only after typing is complete
+  useEffect(() => {
+    if (!isTypingComplete) return;
+    
     const interval = setInterval(() => {
       setCurrentTextIndex((prev) => (prev + 1) % changingTexts.length);
     }, 2000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isTypingComplete]);
 
   return (
     <div className="relative h-screen bg-background flex items-center justify-center overflow-hidden">
-      {/* Flowing tube background */}
-      <div className="absolute inset-0">
-        <svg className="w-full h-full" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-          {/* Flowing metallic tubes */}
-          <defs>
-            <linearGradient id="tubeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(192,192,192,0.8)" />
-              <stop offset="50%" stopColor="rgba(255,255,255,0.9)" />
-              <stop offset="100%" stopColor="rgba(160,160,160,0.7)" />
-            </linearGradient>
-            <linearGradient id="tubeGradient2" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(180,180,180,0.6)" />
-              <stop offset="50%" stopColor="rgba(220,220,220,0.8)" />
-              <stop offset="100%" stopColor="rgba(140,140,140,0.5)" />
-            </linearGradient>
-          </defs>
-          
-          {/* Main flowing tubes */}
-          <path 
-            d="M-200,200 Q400,100 800,300 T1600,250 Q1800,200 2000,400" 
-            stroke="url(#tubeGradient1)" 
-            strokeWidth="40" 
-            fill="none" 
-            opacity="0.7"
-            className="animate-pulse"
-            style={{animationDuration: '4s'}}
-          />
-          <path 
-            d="M-100,600 Q300,500 700,700 T1500,650 Q1700,600 1900,800" 
-            stroke="url(#tubeGradient2)" 
-            strokeWidth="35" 
-            fill="none" 
-            opacity="0.6"
-            className="animate-pulse"
-            style={{animationDuration: '6s', animationDelay: '1s'}}
-          />
-          <path 
-            d="M200,900 Q600,800 1000,1000 T1800,950 Q2000,900 2200,1100" 
-            stroke="url(#tubeGradient1)" 
-            strokeWidth="30" 
-            fill="none" 
-            opacity="0.5"
-            className="animate-pulse"
-            style={{animationDuration: '5s', animationDelay: '2s'}}
-          />
-          
-          {/* Additional curved elements */}
-          <ellipse cx="300" cy="200" rx="60" ry="20" fill="url(#tubeGradient1)" opacity="0.4" className="animate-pulse" style={{animationDuration: '3s'}} />
-          <ellipse cx="1200" cy="800" rx="80" ry="25" fill="url(#tubeGradient2)" opacity="0.3" className="animate-pulse" style={{animationDuration: '4s', animationDelay: '1.5s'}} />
-          <ellipse cx="1600" cy="300" rx="50" ry="15" fill="url(#tubeGradient1)" opacity="0.5" className="animate-pulse" style={{animationDuration: '2.5s', animationDelay: '0.5s'}} />
-        </svg>
+      {/* 3D Animated Background */}
+      <div className="absolute inset-0" style={{ zIndex: 1 }}>
+        <ThreeDBackground />
       </div>
+      
+      {/* Subtle overlay for better text readability */}
+      <div className="absolute inset-0 bg-background/5 backdrop-blur-[0.5px]" style={{ zIndex: 2 }}></div>
 
       {/* Main content */}
-      <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
+      <div className="relative text-center max-w-6xl mx-auto px-6" style={{ zIndex: 10 }}>
         <div className="space-y-6">
           <h1 className="text-display leading-tight">
-            MORE THAN CODE
+            <span className="inline-block">
+              {typedText.split(' ').map((word, index) => (
+                <span key={index} className="mr-4">
+                  {word === 'CODE' ? (
+                    <span className="text-purple-500">{word}</span>
+                  ) : (
+                    word
+                  )}
+                </span>
+              ))}
+              <span className="animate-pulse text-purple-500">|</span>
+            </span>
           </h1>
           
-          <div className="relative h-32 flex items-center justify-center">
-            <span className="text-display mr-6">—IT'S </span>
-            <div className="relative overflow-hidden">
-              {changingTexts.map((text, index) => (
-                <div
-                  key={index}
-                  className={`absolute transition-all duration-500 ${
-                    index === currentTextIndex 
-                      ? 'opacity-100 transform translate-y-0' 
-                      : 'opacity-0 transform translate-y-full'
-                  }`}
-                >
-                  <span className={text.color}>
-                    {text.word}
-                  </span>
-                </div>
-              ))}
+          {isTypingComplete && (
+            <div className="relative h-32 flex items-center justify-center animate-fade-in">
+              <span className="text-display mr-6">—IT'S </span>
+              <div className="relative overflow-hidden">
+                {changingTexts.map((text, index) => (
+                  <div
+                    key={index}
+                    className={`absolute transition-all duration-500 ${
+                      index === currentTextIndex 
+                        ? 'opacity-100 transform translate-y-0' 
+                        : 'opacity-0 transform translate-y-full'
+                    }`}
+                  >
+                    <span className={text.color}>
+                      {text.word}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <p className="text-xl md:text-2xl text-text-secondary mt-12 font-inter max-w-3xl mx-auto leading-relaxed">

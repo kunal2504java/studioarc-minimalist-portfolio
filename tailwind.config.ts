@@ -19,8 +19,11 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				sans: ['Space Mono', 'monospace'],
+				mono: ['Space Mono', 'monospace'],
 				inter: ['Inter', 'system-ui', 'sans-serif'],
 				orbitron: ['Orbitron', 'monospace'],
+				'space-mono': ['Space Mono', 'monospace'],
 			},
 			colors: {
 				// Core semantic colors
