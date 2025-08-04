@@ -44,7 +44,7 @@ const HeroSection = () => {
   }, [isTypingComplete]);
 
   return (
-    <div className="relative h-screen bg-background flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen py-20 bg-background flex items-center justify-center overflow-hidden">
       {/* Dotted Background */}
       <div className="absolute inset-0" style={{ zIndex: 1 }}>
         <DottedBackground />
