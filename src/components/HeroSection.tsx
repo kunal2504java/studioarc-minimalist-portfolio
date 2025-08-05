@@ -61,19 +61,16 @@ const HeroSection = () => {
           {/* Photo */}
           <div className="flex justify-center">
             <div className="relative">
-              <div className="relative w-48 h-48 rounded-2xl overflow-hidden border-2 border-accent/30 bg-surface-secondary">
-                <div className="w-full h-full bg-gradient-to-br from-surface-tertiary to-surface flex items-center justify-center">
-                  <div className="text-center space-y-2">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-accent/20 flex items-center justify-center">
-                      <span className="text-xl text-accent">👨‍💻</span>
-                    </div>
-                    <p className="text-text-muted text-xs">Your Photo Here</p>
-                  </div>
-                </div>
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent/20 via-accent-secondary/20 to-accent/20 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-accent/30 bg-surface-secondary shadow-lg">
+                <img 
+                  src="/profile.png" 
+                  alt="Kunal - Profile Photo"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent/20 via-accent-secondary/20 to-accent/20 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-              <div className="absolute -top-2 -right-2 w-4 h-4 border border-accent rounded bg-background"></div>
-              <div className="absolute -bottom-2 -left-2 w-3 h-3 border border-accent-secondary rounded bg-background"></div>
+              <div className="absolute -top-3 -right-3 w-6 h-6 border-2 border-accent rounded-full bg-background shadow-sm"></div>
+              <div className="absolute -bottom-3 -left-3 w-4 h-4 border-2 border-accent-secondary rounded-full bg-background shadow-sm"></div>
             </div>
           </div>
 
@@ -86,7 +83,7 @@ const HeroSection = () => {
             </p>
             
             <p className="text-base text-text-tertiary leading-relaxed">
-              With expertise in React, Node.js, Python, and cloud platforms, I craft end-to-end solutions 
+              With expertise in Java, React, Node.js, Python, SQL and cloud platforms, I craft end-to-end solutions 
               that seamlessly blend cutting-edge technology with exceptional user experience.
             </p>
           </div>

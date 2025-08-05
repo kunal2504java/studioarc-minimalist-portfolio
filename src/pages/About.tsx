@@ -6,7 +6,7 @@ import team3 from '@/assets/team-3.jpg';
 const About = () => {
   const teamMembers = [
     {
-      name: 'Sarah Chen',
+      name: 'Kunal',
       title: 'Principal Architect',
       image: team1,
       bio: 'With over 15 years of experience, Sarah leads our design vision with a focus on sustainable architecture.'

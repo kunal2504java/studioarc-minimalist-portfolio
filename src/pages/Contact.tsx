@@ -73,8 +73,8 @@ const Contact = () => {
                     <Phone className="text-accent" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-heading-sm mb-2">Call Us</h3>
-                    <p className="text-body">+1 (555) 123-4567</p>
+                    <h3 className="text-heading-sm mb-2">Call</h3>
+                    <p className="text-body">+91 9005810309</p>
                   </div>
                 </div>
                 
@@ -83,8 +83,8 @@ const Contact = () => {
                     <Mail className="text-accent" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-heading-sm mb-2">Email Us</h3>
-                    <p className="text-body">hello@studioarc.com</p>
+                    <h3 className="text-heading-sm mb-2">Email</h3>
+                    <p className="text-body">kunalpsingh25@gmail.com</p>
                   </div>
                 </div>
               </div>
