@@ -97,12 +97,28 @@ export default {
 				'medium': '0 4px 12px hsl(var(--shadow-medium))',
 				'strong': '0 8px 25px hsl(var(--shadow-strong))',
 			},
+			perspective: {
+				'1000': '1000px',
+			},
+			rotate: {
+				'y-180': '180deg',
+			},
+			transformStyle: {
+				'preserve-3d': 'preserve-3d',
+			},
+			backfaceVisibility: {
+				hidden: 'hidden',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			keyframes: {
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' },
+				},
 				'accordion-down': {
 					from: {
 						height: '0'
@@ -140,6 +156,7 @@ export default {
 				}
 			},
 			animation: {
+				'spin-slow': 'spin-slow 3s linear infinite',
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'bounce-arrow': 'bounce-arrow 2s infinite',

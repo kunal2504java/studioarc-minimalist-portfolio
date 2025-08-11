@@ -61,7 +61,7 @@ const projects: Project[] = [
   }
 ];
 
-const categories = ['All', 'Residential', 'Commercial', 'Public Spaces'];
+const categories = ['All'];
 
 const ProjectGrid = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -73,21 +73,14 @@ const ProjectGrid = () => {
   return (
     <div className="section-padding">
       <div className="container-wide">
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                selectedCategory === category
-                  ? 'bg-accent text-accent-foreground'
-                  : 'bg-surface-secondary text-text-secondary hover:bg-hover'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        {/* Filter Button - Only All */}
+        <div className="flex justify-center mb-16">
+          <button
+            className="px-6 py-2 rounded-full bg-accent text-accent-foreground"
+            disabled
+          >
+            All
+          </button>
         </div>
 
         {/* Projects Grid */}

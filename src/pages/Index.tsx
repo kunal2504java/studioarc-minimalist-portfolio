@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import SkillsSection from '@/components/SkillsSection';
 
 const Index = () => {
   return (
@@ -7,18 +8,14 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       
-      {/* Placeholder sections for future content */}
+      {/* Skills Section */}
+      <SkillsSection />
+      
+      {/* Placeholder section for future content */}
       <section className="min-h-screen bg-surface-secondary flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-heading-xl mb-4">Section 2</h2>
-          <p className="text-text-secondary">More content will be added here</p>
-        </div>
-      </section>
-      
-      <section className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-heading-xl mb-4">Section 3</h2>
-          <p className="text-text-secondary">More content will be added here</p>
+          <h2 className="text-heading-xl mb-4">More Coming Soon</h2>
+          <p className="text-text-secondary">This section is under development</p>
         </div>
       </section>
     </div>
