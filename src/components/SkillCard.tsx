@@ -22,8 +22,12 @@ const SkillCard = ({ name, icon, description, level, color }: SkillCardProps) =>
       >
         {/* Front of the card */}
         <div className="absolute w-full h-full backface-hidden bg-surface-secondary rounded-lg p-6 flex flex-col items-center justify-center border border-border">
-          <div className={`w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-4 ${color}`}>
-            {icon}
+          <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 ${color}`}>
+            <img 
+              src={icon} 
+              alt={`${name} icon`} 
+              className="w-10 h-10 object-contain"
+            />
           </div>
           <h3 className="text-heading-md text-center">{name}</h3>
           <div className="mt-2 w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">

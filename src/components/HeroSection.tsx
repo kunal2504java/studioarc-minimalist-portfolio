@@ -83,7 +83,7 @@ const HeroSection = () => {
             </p>
             
             <p className="text-base text-text-tertiary leading-relaxed">
-              With expertise in Java, React, Node.js, Python, SQL and cloud platforms, I craft end-to-end solutions 
+              With expertise in Java, Python React, Node.js, SQL and cloud platforms, I craft end-to-end solutions 
               that seamlessly blend cutting-edge technology with exceptional user experience.
             </p>
           </div>

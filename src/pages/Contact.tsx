@@ -61,9 +61,9 @@ const Contact = () => {
                   <div>
                     <h3 className="text-heading-sm mb-2">Visit Our Studio</h3>
                     <p className="text-body">
-                      123 Design District<br />
-                      Creative Quarter, CQ 12345<br />
-                      New York, NY
+                      Knowledge Park 3<br />
+                      Greater Noida <br />
+                      Uttar Pradesh , India
                     </p>
                   </div>
                 </div>

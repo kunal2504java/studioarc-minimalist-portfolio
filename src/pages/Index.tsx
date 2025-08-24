@@ -1,6 +1,8 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import SkillsSection from '@/components/SkillsSection';
+import FlappyBugGame from '@/components/FlappyBugGameFixed';
+import GamingGearBackground from '@/components/GamingGearBackground';
 
 const Index = () => {
   return (
@@ -11,11 +13,16 @@ const Index = () => {
       {/* Skills Section */}
       <SkillsSection />
       
-      {/* Placeholder section for future content */}
-      <section className="min-h-screen bg-surface-secondary flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-heading-xl mb-4">More Coming Soon</h2>
-          <p className="text-text-secondary">This section is under development</p>
+      {/* Flappy Bug Game Section */}
+      <section className="relative min-h-screen bg-surface-secondary flex items-center justify-center py-20 overflow-hidden">
+        {/* 3D Gaming Gear Background */}
+        <div className="absolute inset-0 z-0">
+          <GamingGearBackground />
+        </div>
+        
+        {/* Game Content */}
+        <div className="relative z-20">
+          <FlappyBugGame />
         </div>
       </section>
     </div>

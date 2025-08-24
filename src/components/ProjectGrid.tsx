@@ -1,63 +1,68 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+// Import project images
+import techProject1 from '@/assets/projects/medbud.png';
+import techProject2 from '@/assets/projects/zentigrity.png';
+import techProject3 from '@/assets/projects/dermascope.png';
+import techProject4 from '@/assets/projects/synapse.png';
 
 interface Project {
   id: number;
   title: string;
-  category: string;
-  year: string;
+  description: string;
   image: string;
-  slug: string;
+  link: string;
+  color: string;
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Minimalist Residential Complex',
-    category: 'Residential',
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1433832597046-4f10e10ac764?w=800&h=600&fit=crop',
-    slug: 'minimalist-residential-complex'
+    title: 'MediBud AI',
+    description: 'AI-powered healthcare platform that provides personalized medical recommendations and symptom analysis using machine learning algorithms.',
+    image: techProject1,
+    link: 'https://medbud-seven.vercel.app/',
+    color: 'bg-accent'
   },
   {
     id: 2,
-    title: 'Glass House Retreat',
-    category: 'Residential',
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=600&fit=crop',
-    slug: 'glass-house-retreat'
+    title: 'Zentigrity',
+    description: 'Comprehensive wellness and mindfulness application featuring meditation guides, mood tracking, and personalized wellness plans.',
+    image: techProject2,
+    link: 'https://placeholder-zentigrity.com',
+    color: 'bg-accent'
   },
   {
     id: 3,
-    title: 'Urban Office Tower',
-    category: 'Commercial',
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1497604401993-f2e922e5cb0a?w=800&h=600&fit=crop',
-    slug: 'urban-office-tower'
+    title: 'DermaScope',
+    description: 'Advanced dermatology analysis tool using computer vision to detect and analyze skin conditions with high accuracy.',
+    image: techProject3,
+    link: 'https://placeholder-dermascope.com',
+    color: 'bg-accent'
   },
   {
     id: 4,
-    title: 'Community Pavilion',
-    category: 'Public Spaces',
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?w=800&h=600&fit=crop',
-    slug: 'community-pavilion'
+    title: 'Synapse',
+    description: 'AI-powered retail supply chain management platform that combines real-time monitoring, predictive analytics, and intelligent automation to create a "self-healing" retail nervous system.',
+    image: techProject4,
+    link: 'https://placeholder-cryptotracker.com',
+    color: 'bg-accent'
   },
   {
     id: 5,
-    title: 'Modern Art Gallery',
-    category: 'Commercial',
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1493397212122-2b85dda8106b?w=800&h=600&fit=crop',
-    slug: 'modern-art-gallery'
+    title: 'SmartHome Hub',
+    description: 'IoT-based home automation platform that integrates multiple smart devices with voice control and machine learning optimization.',
+    image: techProject1,
+    link: 'https://placeholder-smarthome.com',
+    color: 'bg-accent'
   },
   {
     id: 6,
-    title: 'Sustainable Housing',
-    category: 'Residential',
-    year: '2022',
-    image: 'https://images.unsplash.com/photo-1524230572899-a752b3835840?w=800&h=600&fit=crop',
-    slug: 'sustainable-housing'
+    title: 'DataViz Analytics',
+    description: 'Interactive data visualization dashboard for business intelligence with real-time reporting and predictive analytics capabilities.',
+    image: techProject2,
+    link: 'https://placeholder-dataviz.com',
+    color: 'bg-accent'
   }
 ];
 
@@ -66,9 +71,7 @@ const categories = ['All'];
 const ProjectGrid = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory);
+  const filteredProjects = projects;
 
   return (
     <div className="section-padding">
@@ -86,9 +89,11 @@ const ProjectGrid = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <Link 
+            <a 
               key={project.id} 
-              to={`/projects/${project.slug}`}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`project-thumbnail group aspect-[4/3] fade-in visible stagger-delay-${(index % 4) + 1}`}
             >
               <img 
@@ -99,12 +104,12 @@ const ProjectGrid = () => {
               
               {/* Overlay */}
               <div className="image-overlay">
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <p className="text-caption mb-2">{project.category} • {project.year}</p>
-                  <h3 className="text-heading-sm">{project.title}</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-black">
+                  <h3 className="text-heading-sm mb-3">{project.title}</h3>
+                  <p className="text-body-sm">{project.description}</p>
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
       </div>
