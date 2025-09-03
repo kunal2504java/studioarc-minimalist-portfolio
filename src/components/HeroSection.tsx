@@ -3,45 +3,40 @@ import { ChevronDown, Download, ExternalLink } from 'lucide-react';
 import DottedBackground from '../components/DottedBackground';
 
 const HeroSection = () => {
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [typedText, setTypedText] = useState('');
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-  
-  const changingTexts = [
-    { word: '[CODE]', color: 'text-purple-500' },
-    { word: '[INNOVATION]', color: 'text-display-accent' },
-    { word: '[SOLUTIONS]', color: 'text-display-accent' },
-    { word: '[EXPERIENCE]', color: 'text-display-accent' }
-  ];
+  const [firstLineText, setFirstLineText] = useState('');
+  const [secondLineText, setSecondLineText] = useState('');
+  const [showSecondLine, setShowSecondLine] = useState(false);
+  const [showThirdLine, setShowThirdLine] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
 
-  const fullText = 'MORE THAN CODE';
+  const firstLine = 'Disruptive ideas';
+  const secondLine = 'Reckless energy.';
+  const thirdLine = 'Pure hustle.';
   
   // Typewriter effect for main heading
   useEffect(() => {
     let currentIndex = 0;
     const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setTypedText(fullText.slice(0, currentIndex));
+      if (currentIndex <= firstLine.length) {
+        setFirstLineText(firstLine.slice(0, currentIndex));
+        currentIndex++;
+      } else if (currentIndex <= firstLine.length + secondLine.length) {
+        if (!showSecondLine) {
+          setShowSecondLine(true);
+        }
+        setSecondLineText(secondLine.slice(0, currentIndex - firstLine.length));
         currentIndex++;
       } else {
-        setIsTypingComplete(true);
+        setShowThirdLine(true);
+        setIsTyping(false);
         clearInterval(typingInterval);
       }
     }, 100); // Adjust speed here (lower = faster)
 
     return () => clearInterval(typingInterval);
-  }, []);
+  }, [showSecondLine]);
 
-  // Start the changing text animation only after typing is complete
-  useEffect(() => {
-    if (!isTypingComplete) return;
-    
-    const interval = setInterval(() => {
-      setCurrentTextIndex((prev) => (prev + 1) % changingTexts.length);
-    }, 2000);
 
-    return () => clearInterval(interval);
-  }, [isTypingComplete]);
 
   return (
     <div className="relative min-h-screen py-20 bg-background flex items-center justify-center overflow-hidden">
@@ -51,7 +46,7 @@ const HeroSection = () => {
       </div>
       
       {/* Subtle overlay for better text readability */}
-      <div className="absolute inset-0 bg-background/5 backdrop-blur-[0.5px]" style={{ zIndex: 2 }}></div>
+      <div className="absolute inset-0 bg-background/20 backdrop-blur-[1px]" style={{ zIndex: 2 }}></div>
 
       {/* Main content */}
       <div className="relative text-center max-w-6xl mx-auto px-6" style={{ zIndex: 10 }}>
@@ -111,39 +106,37 @@ const HeroSection = () => {
 
         {/* Bottom section - Animated text */}
         <div className="space-y-6">
-          <h1 className="text-display leading-tight">
-            <span className="inline-block">
-              {typedText.split(' ').map((word, index) => (
-                <span key={index} className="mr-4">
-                  {word === 'CODE' ? (
-                    <span className="text-purple-500">{word}</span>
-                  ) : (
-                    word
-                  )}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+            {/* First line */}
+            <div className="block">
+              <span className="inline-block">
+                {firstLineText}
+                {isTyping && !showSecondLine && <span className="animate-pulse text-accent">|</span>}
+              </span>
+            </div>
+            
+            {/* Second line */}
+            {showSecondLine && (
+              <div className="block mt-4">
+                <span className="inline-block">
+                  {secondLineText}
+                  {isTyping && !showThirdLine && <span className="animate-pulse text-accent">|</span>}
                 </span>
-              ))}
-              <span className="animate-pulse text-purple-500">|</span>
-            </span>
+              </div>
+            )}
+            
+            {/* Third line */}
+            {showThirdLine && (
+              <div className="block mt-4">
+                <span className="text-accent">{thirdLine}</span>
+              </div>
+            )}
           </h1>
           
-          {isTypingComplete && (
+          {showThirdLine && (
             <div className="relative h-32 flex items-center justify-center animate-fade-in">
-              <span className="text-display mr-6">—IT'S </span>
-              <div className="relative overflow-hidden">
-                {changingTexts.map((text, index) => (
-                  <div
-                    key={index}
-                    className={`absolute transition-all duration-500 ${
-                      index === currentTextIndex 
-                        ? 'opacity-100 transform translate-y-0' 
-                        : 'opacity-0 transform translate-y-full'
-                    }`}
-                  >
-                    <span className={text.color}>
-                      {text.word}
-                    </span>
-                  </div>
-                ))}
+              <div className="text-2xl md:text-3xl lg:text-4xl text-center">
+                <span className="text-accent font-semibold">Ready to build something amazing?</span>
               </div>
             </div>
           )}

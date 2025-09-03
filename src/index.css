@@ -254,5 +254,5 @@
   .stagger-delay-1 { @apply delay-100; }
   .stagger-delay-2 { @apply delay-200; }
   .stagger-delay-3 { @apply delay-300; }
-  .stagger-delay-4 { @apply delay-400; }
+  .stagger-delay-4 { @apply delay-500; }
 }
