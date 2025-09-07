@@ -14,14 +14,14 @@ const About = () => {
   const socialLinks = [
     {
       name: 'GitHub',
-      url: 'https://github.com/yourusername',
+      url: 'https://github.com/kunal2504java',
       icon: Github,
       color: 'hover:text-gray-400',
       bgColor: 'hover:bg-gray-900/20'
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/yourusername',
+      url: 'https://www.linkedin.com/in/kunal-pratap-singh-a37461249/',
       icon: Linkedin,
       color: 'hover:text-blue-400',
       bgColor: 'hover:bg-blue-900/20'
@@ -286,7 +286,7 @@ const About = () => {
               <div className="fade-in visible space-y-3">
                 <a 
                   href="/resume.pdf" 
-                  download 
+                  download="Kunal_Pratap_Singh_Resume.pdf"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors duration-150"
                 >
                   <Download size={18} />

@@ -17,12 +17,32 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    
+    try {
+      // Replace with your actual Formspree endpoint URL
+      const FORMPREE_ENDPOINT = 'https://formspree.io/f/mzzaygjn';
+      
+      const response = await fetch(FORMPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (response.ok) {
+        alert('Thank you! Your message has been sent successfully.');
+        // Reset form
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error sending your message. Please try again.');
+    }
   };
 
   return (
@@ -49,8 +69,7 @@ const Contact = () => {
             <div className="fade-in visible">
               <h2 className="text-heading-xl mb-8">Let's Start a Conversation</h2>
               <p className="text-body mb-12">
-                Whether you're planning a new build, renovation, or just have questions about our process, 
-                we're here to help bring your vision to life.
+                Whether you're planning a new project or you wanna talk about how we are just an t  breed of monekeys on a minor planet of a very average star.
               </p>
               
               <div className="space-y-8">
@@ -59,7 +78,6 @@ const Contact = () => {
                     <MapPin className="text-accent" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-heading-sm mb-2">Visit Our Studio</h3>
                     <p className="text-body">
                       Knowledge Park 3<br />
                       Greater Noida <br />
@@ -105,7 +123,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all text-black"
                     />
                   </div>
                   
@@ -120,7 +138,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all text-black"
                     />
                   </div>
                 </div>
@@ -135,7 +153,7 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all text-black"
                   />
                 </div>
                 
@@ -150,7 +168,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-vertical"
+                    className="w-full px-4 py-3 border border-border rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-vertical text-black"
                   />
                 </div>
                 

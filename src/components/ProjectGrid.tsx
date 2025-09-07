@@ -23,7 +23,7 @@ const projects: Project[] = [
     title: 'MediBud AI',
     description: 'AI-powered healthcare platform that provides personalized medical recommendations and symptom analysis using machine learning algorithms.',
     image: techProject1,
-    link: 'https://medbud-seven.vercel.app/',
+    link: 'https://med-bud.vercel.app/',
     color: 'bg-accent'
   },
   {
@@ -31,7 +31,7 @@ const projects: Project[] = [
     title: 'Zentigrity',
     description: 'Comprehensive wellness and mindfulness application featuring meditation guides, mood tracking, and personalized wellness plans.',
     image: techProject2,
-    link: 'https://placeholder-zentigrity.com',
+    link: 'https://galgotiashackathon-65hd.vercel.app/',
     color: 'bg-accent'
   },
   {
