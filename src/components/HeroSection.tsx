@@ -87,7 +87,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="/resume.pdf" 
-              download="Kunal_Pratap_Singh_Resume.pdf"
+              download 
               className="button-primary inline-flex items-center gap-2 justify-center"
             >
               <Download size={20} />
