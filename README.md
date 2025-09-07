@@ -4,7 +4,7 @@ A modern, interactive portfolio website built with React, TypeScript, and Vite. 
 
 ## 🚀 Live Demo
 
-[View Live Portfolio](https://your-portfolio-url.com) *(Update with your actual deployment URL)*
+[View Live Portfolio](https://kunal-portfolio-fawn.vercel.app/)
 
 ## ✨ Features
 
